@@ -10,9 +10,10 @@ FoodieFinder is a modern, feature-rich iOS app built with SwiftUI that helps use
 
 Experience our beautiful onboarding flow that introduces users to FoodieFinder's key features:
 
-| Discover                                        | Categories                                      | Favorites                                       | Profile                                         |
+| Discover                                        | Categories                                      | Favorites                                       | 
+Get Started                                       |
 | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| ![Welcome 1](screenshots/welcome/welcome_1.png) | ![Welcome 2](screenshots/welcome/welcome_2.png) | ![Welcome 3](screenshots/welcome/welcome_3.png) | ![Welcome 4](screenshots/welcome/welcome_4.png) |
+| ![Welcome 1](screenshots/welcome_1.png) | ![Welcome 2](screenshots/welcome_2.png) | ![Welcome 3](screenshots/welcome_3.png) | ![Welcome 4](screenshots/get_started.png) |
 
 ### **Onboarding Features**
 
