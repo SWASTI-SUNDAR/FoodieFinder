@@ -6,13 +6,44 @@ FoodieFinder is a modern, feature-rich iOS app built with SwiftUI that helps use
 
 ![App Icon](https://img.shields.io/badge/iOS-15.0%2B-blue) ![Swift](https://img.shields.io/badge/Swift-5.8-orange) ![SwiftUI](https://img.shields.io/badge/SwiftUI-4.0-blue) ![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey)
 
-## 📱 App Screenshots
+## 🎬 Welcome Experience
+
+Experience our beautiful onboarding flow that introduces users to FoodieFinder's key features:
+
+| Splash Screen | Discover | Categories | Favorites | Booking | Get Started |
+|---------------|----------|------------|-----------|---------|-------------|
+| ![Splash](screenshots/welcome/splash.png) | ![Welcome 1](screenshots/welcome_1.png) | ![Welcome 2](screenshots/welcome_2.png) | ![Welcome 3](screenshots/welcome_3.png) | ![Get Started](screenshots/welcome/get_started.png) |
+
+### **Onboarding Features**
+- **🎨 Animated Splash Screen**: Eye-catching logo animation with floating particles
+- **📖 Step-by-Step Introduction**: Four carefully crafted screens explaining core features
+- **✨ Smooth Animations**: Fluid transitions and engaging micro-interactions
+- **🎯 Feature Highlights**: Clear explanations of search, categories, favorites, and booking
+- **🚀 Call-to-Action**: Prominent "Get Started" button to begin the journey
+
+## 📱 Main App Screenshots
 
 | Home/Search | Categories | Favorites | Bookings | Profile |
 |-------------|------------|-----------|----------|---------|
-| ![Home Screenshot](screenshots/home.png) | ![Categories Screenshot](screenshots/categories.png) | ![Favorites Screenshot](screenshots/favorites.png) | ![Bookings Screenshot](screenshots/bookings.png) | ![Profile Screenshot](screenshots/profile.png) |x
+| ![Home Screenshot](screenshots/home.png) | ![Categories Screenshot](screenshots/categories.png) | ![Favorites Screenshot](screenshots/favorites.png) | ![Bookings Screenshot](screenshots/bookings.png) | ![Profile Screenshot](screenshots/profile.png) |
 
-*Add your screenshots to a `screenshots` folder in the project root*
+*Add your screenshots to a `screenshots` folder in the project root with the following structure:*
+
+```
+screenshots/
+├── welcome/
+│   ├── splash.png
+│   ├── welcome_1.png
+│   ├── welcome_2.png
+│   ├── welcome_3.png
+│   ├── welcome_4.png
+│   └── get_started.png
+├── home.png
+├── categories.png
+├── favorites.png
+├── bookings.png
+└── profile.png
+```
 
 ## ✨ Key Features
 
