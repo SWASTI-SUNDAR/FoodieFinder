@@ -276,9 +276,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Developer
 
 **Swasti Sundar Pradhan**
-- 📧 Email: [your.email@example.com]
-- 🔗 LinkedIn: [Your LinkedIn Profile]
-- 🐙 GitHub: [Your GitHub Profile]
+- 📧 Email: [swastipradhan044@gmail.com.com]
+- 🔗 LinkedIn: [linkedin.com/swasti-sundar]
+- 🐙 GitHub: [github.com/swasti-sundar]
 
 ## 🙏 Acknowledgments
 
@@ -289,6 +289,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Made with ❤️ and SwiftUI**
+**Made with ❤️ by [Swasti](https://www.instagram.com/swasti-sundar)**
 
 *FoodieFinder - Discover Your Next Great Meal*
