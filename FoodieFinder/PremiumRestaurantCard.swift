@@ -219,15 +219,15 @@ struct PremiumRestaurantCard: View {
                         
                         // Quick Actions
                         HStack(spacing: 8) {
-                            ActionButton(icon: "phone.fill", color: .blue) {
+                            ActionButton(icon: "phone.fill", title: "Call", color: .blue) {
                                 // Call restaurant
                             }
                             
-                            ActionButton(icon: "safari", color: .orange) {
+                            ActionButton(icon: "safari", title: "Website", color: .orange) {
                                 // Open website
                             }
                             
-                            ActionButton(icon: "calendar.badge.plus", color: .green) {
+                            ActionButton(icon: "calendar.badge.plus", title: "Reserve", color: .green) {
                                 // Make reservation
                             }
                         }
@@ -309,28 +309,5 @@ struct StatusChip: View {
                         .stroke(color.opacity(isProminent ? 0 : 0.3), lineWidth: 0.5)
                 )
         )
-    }
-}
-
-struct ActionButton: View {
-    let icon: String
-    let color: Color
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            Image(systemName: icon)
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(color)
-                .frame(width: 32, height: 32)
-                .background(
-                    Circle()
-                        .fill(color.opacity(0.1))
-                        .overlay(
-                            Circle()
-                                .stroke(color.opacity(0.2), lineWidth: 0.5)
-                        )
-                )
-        }
     }
 }
