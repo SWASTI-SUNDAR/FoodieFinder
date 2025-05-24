@@ -10,10 +10,9 @@ FoodieFinder is a modern, feature-rich iOS app built with SwiftUI that helps use
 
 Experience our beautiful onboarding flow that introduces users to FoodieFinder's key features:
 
-| Discover                                        | Categories                                      | Favorites                                       | 
-Get Started                                       |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| ![Welcome 1](screenshots/welcome_1.png) | ![Welcome 2](screenshots/welcome_2.png) | ![Welcome 3](screenshots/welcome_3.png) | ![Welcome 4](screenshots/get_started.png) |
+| Discover | Categories | Favorites | Profile |
+|----------|------------|-----------|---------|
+| ![Welcome 1](screenshots/welcome/welcome_1.png) | ![Welcome 2](screenshots/welcome/welcome_2.png) | ![Welcome 3](screenshots/welcome/welcome_3.png) | ![Welcome 4](screenshots/welcome/welcome_4.png) |
 
 ### **Onboarding Features**
 
@@ -24,11 +23,11 @@ Get Started                                       |
 
 ## 📱 Main App Screenshots
 
-| Home/Search                              | Categories                                           | Favorites                                          | Profile                                        |
-| ---------------------------------------- | ---------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------- |
+| Home/Search | Categories | Favorites | Profile |
+|-------------|------------|-----------|---------|
 | ![Home Screenshot](screenshots/home.png) | ![Categories Screenshot](screenshots/categories.png) | ![Favorites Screenshot](screenshots/favorites.png) | ![Profile Screenshot](screenshots/profile.png) |
 
-_Add your screenshots to a `screenshots` folder in the project root with the following structure:_
+*Add your screenshots to a `screenshots` folder in the project root with the following structure:*
 
 ```
 screenshots/
