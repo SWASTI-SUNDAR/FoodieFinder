@@ -32,38 +32,35 @@ struct MainView: View {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
                         // Premium Header Section
-                        VStack(spacing: 20) {
+                        VStack(spacing: 16) {
                             // Top Bar with Greeting
-                            HStack {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    HStack {
+                            HStack(alignment: .center) {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    HStack(spacing: 4) {
                                         Text("Good")
-                                            .font(.title2)
-                                            .fontWeight(.medium)
+                                            .font(.system(size: 22, weight: .medium))
                                         + Text(" \(getGreeting())")
-                                            .font(.title2)
-                                            .fontWeight(.bold)
+                                            .font(.system(size: 22, weight: .bold))
                                             .foregroundColor(.orange)
                                     }
                                     
                                     Text("Find amazing restaurants near you")
-                                        .font(.subheadline)
+                                        .font(.system(size: 14))
                                         .foregroundColor(.secondary)
-                                        .fontWeight(.medium)
                                 }
                                 
                                 Spacer()
                                 
                                 // Profile & Notification Buttons
-                                HStack(spacing: 10) {
+                                HStack(spacing: 12) {
                                     Button(action: {}) {
                                         ZStack {
                                             Circle()
                                                 .fill(Color.orange.opacity(0.1))
-                                                .frame(width: 40, height: 40)
+                                                .frame(width: 38, height: 38)
                                             
                                             Image(systemName: "bell")
-                                                .font(.system(size: 16, weight: .medium))
+                                                .font(.system(size: 15, weight: .medium))
                                                 .foregroundColor(.orange)
                                             
                                             // Notification badge
@@ -81,10 +78,10 @@ struct MainView: View {
                                                 .aspectRatio(contentMode: .fill)
                                         } placeholder: {
                                             Image(systemName: "person.circle.fill")
-                                                .font(.system(size: 40))
+                                                .font(.system(size: 38))
                                                 .foregroundColor(.orange)
                                         }
-                                        .frame(width: 40, height: 40)
+                                        .frame(width: 38, height: 38)
                                         .clipShape(Circle())
                                         .overlay(
                                             Circle()
@@ -93,65 +90,65 @@ struct MainView: View {
                                     }
                                 }
                             }
+                            .padding(.horizontal, 16)
                             
                             // Premium Search Bar
-                            VStack(spacing: 14) {
-                                HStack(spacing: 0) {
-                                    HStack(spacing: 14) {
-                                        ZStack {
-                                            Circle()
-                                                .fill(Color.orange.opacity(0.1))
-                                                .frame(width: 32, height: 32)
-                                            
-                                            Image(systemName: "magnifyingglass")
-                                                .font(.system(size: 14, weight: .semibold))
-                                                .foregroundColor(.orange)
-                                        }
+                            HStack {
+                                HStack(spacing: 12) {
+                                    ZStack {
+                                        Circle()
+                                            .fill(Color.orange.opacity(0.1))
+                                            .frame(width: 30, height: 30)
                                         
-                                        TextField("Search restaurants, cuisines...", text: $viewModel.searchText)
-                                            .font(.system(size: 15, weight: .medium))
-                                            .foregroundColor(.primary)
-                                            .onTapGesture {
-                                                withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
-                                                    isSearchFocused = true
-                                                    searchAnimation.toggle()
-                                                }
-                                            }
-                                        
-                                        if !viewModel.searchText.isEmpty {
-                                            Button(action: {
-                                                withAnimation(.easeInOut(duration: 0.3)) {
-                                                    viewModel.searchText = ""
-                                                    isSearchFocused = false
-                                                }
-                                            }) {
-                                                Image(systemName: "xmark.circle.fill")
-                                                    .font(.system(size: 18))
-                                                    .foregroundColor(.gray)
-                                            }
-                                        }
+                                        Image(systemName: "magnifyingglass")
+                                            .font(.system(size: 14, weight: .medium))
+                                            .foregroundColor(.orange)
                                     }
-                                    .padding(.horizontal, 18)
-                                    .padding(.vertical, 16)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 16)
-                                            .fill(Color(.systemBackground))
-                                            .shadow(
-                                                color: isSearchFocused ? Color.orange.opacity(0.2) : Color.black.opacity(0.04),
-                                                radius: isSearchFocused ? 10 : 6,
-                                                x: 0,
-                                                y: isSearchFocused ? 4 : 2
-                                            )
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 16)
-                                                    .stroke(
-                                                        isSearchFocused ? Color.orange.opacity(0.3) : Color.clear,
-                                                        lineWidth: 1.5
-                                                    )
-                                            )
-                                    )
-                                    .scaleEffect(isSearchFocused ? 1.01 : 1.0)
+                                    
+                                    TextField("Search restaurants, cuisines...", text: $viewModel.searchText)
+                                        .font(.system(size: 15, weight: .medium))
+                                        .foregroundColor(.primary)
+                                        .onTapGesture {
+                                            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                                                isSearchFocused = true
+                                                searchAnimation.toggle()
+                                            }
+                                        }
+                                    
+                                    if !viewModel.searchText.isEmpty {
+                                        Button(action: {
+                                            withAnimation {
+                                                viewModel.searchText = ""
+                                                isSearchFocused = false
+                                            }
+                                        }) {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .font(.system(size: 16))
+                                                .foregroundColor(.gray)
+                                        }
+                                        .transition(.scale.combined(with: .opacity))
+                                    }
                                 }
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 14)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .fill(Color(.systemBackground))
+                                        .shadow(
+                                            color: isSearchFocused ? Color.orange.opacity(0.2) : Color.black.opacity(0.05),
+                                            radius: isSearchFocused ? 8 : 4,
+                                            x: 0,
+                                            y: isSearchFocused ? 3 : 1
+                                        )
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 16)
+                                                .stroke(
+                                                    isSearchFocused ? Color.orange.opacity(0.3) : Color.clear,
+                                                    lineWidth: 1.5
+                                                )
+                                        )
+                                )
+                                .padding(.horizontal, 16)
                             }
                             
                             // Quick Filter Pills
@@ -163,7 +160,7 @@ struct MainView: View {
                                             isSelected: selectedQuickFilter == filter,
                                             count: getFilterCount(filter),
                                             action: {
-                                                withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                                                withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
                                                     if selectedQuickFilter == filter {
                                                         selectedQuickFilter = nil
                                                         clearFilter(filter)
@@ -176,7 +173,7 @@ struct MainView: View {
                                         )
                                     }
                                     
-                                    // Advanced Filters Button
+                                    // Advanced Filters Button with improved visual appeal
                                     Button(action: { showingFilters = true }) {
                                         HStack(spacing: 6) {
                                             ZStack {
@@ -189,15 +186,20 @@ struct MainView: View {
                                                     .foregroundColor(.orange)
                                                 
                                                 if getActiveFiltersCount() > 0 {
-                                                    Circle()
-                                                        .fill(Color.red)
-                                                        .frame(width: 10, height: 10)
-                                                        .overlay(
-                                                            Text("\(getActiveFiltersCount())")
-                                                                .font(.system(size: 7, weight: .bold))
-                                                                .foregroundColor(.white)
-                                                        )
-                                                        .offset(x: 8, y: -8)
+                                                    ZStack {
+                                                        Circle()
+                                                            .fill(Color.red)
+                                                            .frame(width: 16, height: 16)
+                                                            .overlay(
+                                                                Circle()
+                                                                    .stroke(Color.white, lineWidth: 1.5)
+                                                            )
+                                                        
+                                                        Text("\(getActiveFiltersCount())")
+                                                            .font(.system(size: 9, weight: .bold))
+                                                            .foregroundColor(.white)
+                                                    }
+                                                    .offset(x: 10, y: -10)
                                                 }
                                             }
                                             
@@ -216,63 +218,74 @@ struct MainView: View {
                                                 )
                                         )
                                     }
+                                    .buttonStyle(PlainButtonStyle())
                                 }
                                 .padding(.horizontal, 16)
+                                .padding(.vertical, 4)
                             }
                             
-                            // Recent Searches (Enhanced)
+                            // Recent Searches with improved layout
                             if !viewModel.recentSearches.isEmpty && viewModel.searchText.isEmpty {
-                                VStack(alignment: .leading, spacing: 12) {
+                                VStack(alignment: .leading, spacing: 10) {
                                     HStack {
                                         HStack(spacing: 6) {
                                             Image(systemName: "clock.arrow.circlepath")
-                                                .font(.system(size: 14, weight: .medium))
+                                                .font(.system(size: 13, weight: .medium))
                                                 .foregroundColor(.orange)
                                             
                                             Text("Recent Searches")
-                                                .font(.system(size: 15, weight: .semibold))
+                                                .font(.system(size: 14, weight: .semibold))
                                                 .foregroundColor(.primary)
                                         }
                                         
                                         Spacer()
                                         
-                                        Button("Clear All") {
-                                            withAnimation(.easeInOut(duration: 0.4)) {
+                                        Button(action: {
+                                            withAnimation(.easeInOut(duration: 0.3)) {
                                                 viewModel.clearRecentSearches()
                                             }
+                                        }) {
+                                            Text("Clear")
+                                                .font(.system(size: 13, weight: .medium))
+                                                .foregroundColor(.orange)
                                         }
-                                        .font(.system(size: 13, weight: .medium))
-                                        .foregroundColor(.orange)
                                     }
                                     .padding(.horizontal, 16)
                                     
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack(spacing: 8) {
-                                            ForEach(viewModel.recentSearches.prefix(8), id: \.self) { search in
-                                                Button(search) {
-                                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                            ForEach(viewModel.recentSearches.prefix(6), id: \.self) { search in
+                                                Button(action: {
+                                                    withAnimation {
                                                         viewModel.searchText = search
                                                     }
+                                                }) {
+                                                    HStack(spacing: 4) {
+                                                        Image(systemName: "magnifyingglass")
+                                                            .font(.system(size: 10))
+                                                            .foregroundColor(.secondary.opacity(0.7))
+                                                        
+                                                        Text(search)
+                                                            .font(.system(size: 13, weight: .medium))
+                                                            .lineLimit(1)
+                                                    }
+                                                    .padding(.horizontal, 12)
+                                                    .padding(.vertical, 7)
+                                                    .background(
+                                                        Capsule()
+                                                            .fill(Color(.systemGray6))
+                                                    )
                                                 }
-                                                .font(.system(size: 13, weight: .medium))
-                                                .foregroundColor(.secondary)
-                                                .padding(.horizontal, 12)
-                                                .padding(.vertical, 8)
-                                                .background(
-                                                    Capsule()
-                                                        .fill(Color(.systemGray6))
-                                                        .overlay(
-                                                            Capsule()
-                                                                .stroke(Color.gray.opacity(0.2), lineWidth: 0.5)
-                                                        )
-                                                )
+                                                .buttonStyle(PlainButtonStyle())
                                             }
                                         }
                                         .padding(.horizontal, 16)
+                                        .padding(.bottom, 6)
                                     }
                                 }
                             }
                         }
+                        .padding(.top, 8)
                         .padding(.top, 8)
                         .padding(.bottom, 20)
                         .background(
