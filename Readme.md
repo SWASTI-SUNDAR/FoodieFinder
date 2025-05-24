@@ -12,7 +12,7 @@ Experience our beautiful onboarding flow that introduces users to FoodieFinder's
 
 | Splash Screen | Discover | Categories | Favorites | Booking | Get Started |
 |---------------|----------|------------|-----------|---------|-------------|
-| ![Splash](screenshots/welcome/splash.png) | ![Welcome 1](screenshots/welcome_1.png) | ![Welcome 2](screenshots/welcome_2.png) | ![Welcome 3](screenshots/welcome_3.png) | ![Get Started](screenshots/welcome/get_started.png) |
+| ![Splash](screenshots/welcome/splash.png) | ![Welcome 1](screenshots/welcome_1.png) | ![Welcome 2](screenshots/welcome_2.png) | ![Welcome 3](screenshots/welcome_3.png) | ![Get Started](screenshots/get_started.png) |
 
 ### **Onboarding Features**
 - **🎨 Animated Splash Screen**: Eye-catching logo animation with floating particles
