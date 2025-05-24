@@ -181,25 +181,66 @@ struct DetailView: View {
                                     }
                                 }
                                 
-                                // Status Row - Fixed layout
+                                // Status Row - Enhanced layout
                                 VStack(spacing: 12) {
-                                    HStack(spacing: 8) {
-                                        EnhancedStatusChip(
-                                            text: restaurant.isOpen ? "Open Now" : "Closed",
-                                            icon: restaurant.isOpen ? "checkmark.circle.fill" : "xmark.circle.fill",
-                                            color: restaurant.isOpen ? .green : .red,
-                                            isProminent: true
+                                    HStack(spacing: 0) {
+                                        // Primary Status - Open/Closed
+                                        HStack(spacing: 8) {
+                                            Circle()
+                                                .fill(restaurant.isOpen ? .green : .red)
+                                                .frame(width: 10, height: 10)
+                                            
+                                            Text(restaurant.isOpen ? "Open Now" : "Closed")
+                                                .font(.system(size: 15, weight: .bold))
+                                                .foregroundColor(restaurant.isOpen ? .green : .red)
+                                            
+                                            if restaurant.isOpen {
+                                                Text("• Closes at 10 PM")
+                                                    .font(.system(size: 13, weight: .medium))
+                                                    .foregroundColor(.secondary)
+                                            }
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .fill((restaurant.isOpen ? Color.green : Color.red).opacity(0.1))
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 12)
+                                                        .stroke((restaurant.isOpen ? Color.green : Color.red).opacity(0.3), lineWidth: 1)
+                                                )
                                         )
                                         
-                                        if restaurant.deliveryAvailable {
-                                            EnhancedStatusChip(text: "Delivery", icon: "bicycle", color: .blue)
-                                        }
-                                        
-                                        if restaurant.takeoutAvailable {
-                                            EnhancedStatusChip(text: "Takeout", icon: "bag", color: .purple)
-                                        }
-                                        
                                         Spacer()
+                                    }
+                                    
+                                    // Services Row - Redesigned
+                                    if restaurant.deliveryAvailable || restaurant.takeoutAvailable {
+                                        HStack(spacing: 12) {
+                                            Text("Available Services:")
+                                                .font(.system(size: 14, weight: .semibold))
+                                                .foregroundColor(.secondary)
+                                            
+                                            Spacer()
+                                            
+                                            HStack(spacing: 16) {
+                                                if restaurant.deliveryAvailable {
+                                                    ServiceIcon(
+                                                        icon: "bicycle",
+                                                        text: "Delivery",
+                                                        color: .blue
+                                                    )
+                                                }
+                                                
+                                                if restaurant.takeoutAvailable {
+                                                    ServiceIcon(
+                                                        icon: "bag",
+                                                        text: "Takeout",
+                                                        color: .purple
+                                                    )
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -821,4 +862,29 @@ struct ShareSheet: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
+// Add new ServiceIcon component
+struct ServiceIcon: View {
+    let icon: String
+    let text: String
+    let color: Color
+    
+    var body: some View {
+        VStack(spacing: 6) {
+            ZStack {
+                Circle()
+                    .fill(color.opacity(0.12))
+                    .frame(width: 36, height: 36)
+                
+                Image(systemName: icon)
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(color)
+            }
+            
+            Text(text)
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundColor(color)
+        }
+    }
 }

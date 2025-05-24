@@ -188,72 +188,177 @@ struct PremiumRestaurantCard: View {
                         .multilineTextAlignment(.leading)
                 }
                 
-                // Status & Features Section
+                // Enhanced Status & Services Row
                 VStack(spacing: 12) {
-                    // Status Indicators
-                    HStack(spacing: 10) {
-                        StatusChip(
-                            text: restaurant.isOpen ? "Open Now" : "Closed",
-                            icon: restaurant.isOpen ? "checkmark.circle.fill" : "xmark.circle.fill",
-                            color: restaurant.isOpen ? .green : .red,
-                            isProminent: true
+                    // Status Row with better layout
+                    HStack(spacing: 0) {
+                        // Open/Closed Status - Most Important
+                        HStack(spacing: 6) {
+                            Circle()
+                                .fill(restaurant.isOpen ? .green : .red)
+                                .frame(width: 8, height: 8)
+                            
+                            Text(restaurant.isOpen ? "Open" : "Closed")
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(restaurant.isOpen ? .green : .red)
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill((restaurant.isOpen ? Color.green : Color.red).opacity(0.1))
                         )
                         
-                        if restaurant.deliveryAvailable {
-                            StatusChip(
-                                text: "Delivery",
-                                icon: "bicycle",
-                                color: .blue
-                            )
-                        }
+                        Spacer()
                         
-                        if restaurant.takeoutAvailable {
-                            StatusChip(
-                                text: "Takeout",
-                                icon: "bag",
-                                color: .purple
+                        // Services Icons Row - Compact
+                        HStack(spacing: 16) {
+                            if restaurant.deliveryAvailable {
+                                VStack(spacing: 4) {
+                                    ZStack {
+                                        Circle()
+                                            .fill(Color.blue.opacity(0.1))
+                                            .frame(width: 28, height: 28)
+                                        
+                                        Image(systemName: "bicycle")
+                                            .font(.system(size: 12, weight: .semibold))
+                                            .foregroundColor(.blue)
+                                    }
+                                    
+                                    Text("Delivery")
+                                        .font(.system(size: 9, weight: .medium))
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                            
+                            if restaurant.takeoutAvailable {
+                                VStack(spacing: 4) {
+                                    ZStack {
+                                        Circle()
+                                            .fill(Color.purple.opacity(0.1))
+                                            .frame(width: 28, height: 28)
+                                        
+                                        Image(systemName: "bag")
+                                            .font(.system(size: 12, weight: .semibold))
+                                            .foregroundColor(.purple)
+                                    }
+                                    
+                                    Text("Takeout")
+                                        .font(.system(size: 9, weight: .medium))
+                                        .foregroundColor(.purple)
+                                }
+                            }
+                            
+                            // Quick Action Button
+                            Button(action: {}) {
+                                VStack(spacing: 4) {
+                                    ZStack {
+                                        Circle()
+                                            .fill(Color.orange.opacity(0.1))
+                                            .frame(width: 28, height: 28)
+                                        
+                                        Image(systemName: "phone.fill")
+                                            .font(.system(size: 12, weight: .semibold))
+                                            .foregroundColor(.orange)
+                                    }
+                                    
+                                    Text("Call")
+                                        .font(.system(size: 9, weight: .medium))
+                                        .foregroundColor(.orange)
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Features Tags - Horizontal Scrollable
+                    if !restaurant.features.isEmpty {
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                Text("Features")
+                                    .font(.system(size: 13, weight: .semibold))
+                                    .foregroundColor(.secondary)
+                                
+                                Spacer()
+                                
+                                Text("\(restaurant.features.count) features")
+                                    .font(.system(size: 11, weight: .medium))
+                                    .foregroundColor(.orange)
+                            }
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 8) {
+                                    ForEach(restaurant.features.prefix(5), id: \.self) { feature in
+                                        CompactFeatureTag(feature: feature)
+                                    }
+                                    
+                                    if restaurant.features.count > 5 {
+                                        Text("+\(restaurant.features.count - 5)")
+                                            .font(.system(size: 11, weight: .semibold))
+                                            .foregroundColor(.orange)
+                                            .padding(.horizontal, 8)
+                                            .padding(.vertical, 6)
+                                            .background(
+                                                Capsule()
+                                                    .fill(Color.orange.opacity(0.1))
+                                                    .overlay(
+                                                        Capsule()
+                                                            .stroke(Color.orange.opacity(0.3), lineWidth: 0.5)
+                                                    )
+                                            )
+                                    }
+                                }
+                                .padding(.horizontal, 2)
+                            }
+                        }
+                    }
+                    
+                    // Bottom Action Row
+                    HStack {
+                        // View Menu Button
+                        Button(action: {}) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "list.bullet")
+                                    .font(.system(size: 12, weight: .semibold))
+                                Text("View Menu")
+                                    .font(.system(size: 13, weight: .semibold))
+                            }
+                            .foregroundColor(.orange)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.orange.opacity(0.1))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color.orange.opacity(0.3), lineWidth: 0.5)
+                                    )
                             )
                         }
                         
                         Spacer()
                         
-                        // Quick Actions
-                        HStack(spacing: 8) {
-                            ActionButton(icon: "phone.fill", title: "Call", color: .blue) {
-                                // Call restaurant
+                        // Reserve Button
+                        Button(action: {}) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "calendar.badge.plus")
+                                    .font(.system(size: 12, weight: .semibold))
+                                Text("Reserve")
+                                    .font(.system(size: 13, weight: .semibold))
                             }
-                            
-                            ActionButton(icon: "safari", title: "Website", color: .orange) {
-                                // Open website
-                            }
-                            
-                            ActionButton(icon: "calendar.badge.plus", title: "Reserve", color: .green) {
-                                // Make reservation
-                            }
-                        }
-                    }
-                    
-                    // Features Tags
-                    if !restaurant.features.isEmpty {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 8) {
-                                ForEach(restaurant.features.prefix(4), id: \.self) { feature in
-                                    Text(feature)
-                                        .font(.system(size: 12, weight: .medium))
-                                        .foregroundColor(.orange)
-                                        .padding(.horizontal, 10)
-                                        .padding(.vertical, 6)
-                                        .background(
-                                            Capsule()
-                                                .fill(Color.orange.opacity(0.05))
-                                                .overlay(
-                                                    Capsule()
-                                                        .stroke(Color.orange.opacity(0.2), lineWidth: 0.5)
-                                                )
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [.orange, .orange.opacity(0.8)]),
+                                            startPoint: .leading,
+                                            endPoint: .trailing
                                         )
-                                }
-                            }
-                            .padding(.horizontal, 2)
+                                    )
+                                    .shadow(color: .orange.opacity(0.3), radius: 4, x: 0, y: 2)
+                            )
                         }
                     }
                 }
@@ -281,6 +386,28 @@ struct PremiumRestaurantCard: View {
                 cardAnimation = true
             }
         }
+    }
+}
+
+// MARK: - New Compact Components
+
+struct CompactFeatureTag: View {
+    let feature: String
+    
+    var body: some View {
+        Text(feature)
+            .font(.system(size: 11, weight: .medium))
+            .foregroundColor(.secondary)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(
+                Capsule()
+                    .fill(Color(.systemGray6))
+                    .overlay(
+                        Capsule()
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 0.5)
+                    )
+            )
     }
 }
 
